@@ -1,0 +1,50 @@
+<RCC>
+    <qresource prefix="/">
+        <file>imag/u240.png</file>
+        <file>imag/u241.png</file>
+        <file>imag/u276.png</file>
+        <file>imag/u277.png</file>
+        <file>style.qss</file>
+        <file>imag/anniu_01.png</file>
+        <file>imag/anniu_02.png</file>
+        <file>imag/mingcheng.png</file>
+        <file>imag/logleft.png</file>
+        <file>imag/prodectname.png</file>
+        <file>imag/111.png</file>
+        <file>imag/addwork.png</file>
+        <file>imag/other.png</file>
+        <file>imag/teamwork.png</file>
+        <file>imag/u316.png</file>
+        <file>imag/images_01.png</file>
+        <file>imag/eye.png</file>
+        <file>imag/delete.png</file>
+        <file>imag/jiangji.png</file>
+        <file>imag/login.jpg</file>
+        <file>imag/images_02.png</file>
+        <file>imag/images_03.png</file>
+        <file>imag/travel.png</file>
+        <file>imag/anniu_03.png</file>
+        <file>imag/u429.png</file>
+        <file>imag/u292.png</file>
+        <file>imag/scanlogopng.png</file>
+        <file>imag/u312.png</file>
+        <file>imag/autoscan.png</file>
+        <file>imag/lianxuscan.png</file>
+        <file>imag/confirm.jpg</file>
+        <file>imag/serch.png</file>
+        <file>imag/loading.gif</file>
+        <file>imag/logo.png</file>
+        <file>imag/closeclicked .png</file>
+        <file>imag/closehover.png</file>
+        <file>imag/saomiaoaddworkhover.png</file>
+        <file>imag/saomiaoaddworknormal.png</file>
+        <file>imag/saomiaootherhover.png</file>
+        <file>imag/saomiaoothernormal.png</file>
+        <file>imag/saomiaoreciptionhover.png</file>
+        <file>imag/saomiaoreciptionnormal.png</file>
+        <file>imag/saomiaoteamworkhover.png</file>
+        <file>imag/saomiaoteamworknormal.png</file>
+        <file>imag/saomiaotravelhover.png</file>
+        <file>imag/saomiaotravelnormal.png</file>
+    </qresource>
+</RCC>

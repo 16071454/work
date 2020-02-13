@@ -1,0 +1,34 @@
+﻿QDialog#Dialog
+{
+border-image:url(:/imag/login.jpg);
+}
+
+QLineEdit#lineEdit_user_name
+{
+border-width:1px;
+color:black;
+border:1px solid gray;
+}
+
+QLineEdit#lineEdit__pwd
+{
+border-width:1px;
+color:black;
+border:2px solid gray;
+}
+
+QLineEdit#lineEdit_user_name
+{
+border-width:1px;
+color:black;
+border:2px solid gray;
+}
+
+QLineEdit#lineEdit_vertify_code
+{
+border-width:1px;
+color:black;
+border:2px solid gray;
+}
+
+
