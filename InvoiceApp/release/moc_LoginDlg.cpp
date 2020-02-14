@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_Dialog_t {
-    QByteArrayData data[10];
-    char stringdata0[130];
+    QByteArrayData data[11];
+    char stringdata0[145];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -34,16 +34,18 @@ QT_MOC_LITERAL(1, 7, 19), // "signal_start_thread"
 QT_MOC_LITERAL(2, 27, 0), // ""
 QT_MOC_LITERAL(3, 28, 15), // "signal_mainshow"
 QT_MOC_LITERAL(4, 44, 12), // "start_thread"
-QT_MOC_LITERAL(5, 57, 14), // "mybuttonAction"
-QT_MOC_LITERAL(6, 72, 9), // "checkCode"
-QT_MOC_LITERAL(7, 82, 4), // "code"
-QT_MOC_LITERAL(8, 87, 13), // "slot_showscan"
-QT_MOC_LITERAL(9, 101, 28) // "on_pushButton_denglu_clicked"
+QT_MOC_LITERAL(5, 57, 14), // "replyFinished1"
+QT_MOC_LITERAL(6, 72, 14), // "mybuttonAction"
+QT_MOC_LITERAL(7, 87, 9), // "checkCode"
+QT_MOC_LITERAL(8, 97, 4), // "code"
+QT_MOC_LITERAL(9, 102, 13), // "slot_showscan"
+QT_MOC_LITERAL(10, 116, 28) // "on_pushButton_denglu_clicked"
 
     },
     "Dialog\0signal_start_thread\0\0signal_mainshow\0"
-    "start_thread\0mybuttonAction\0checkCode\0"
-    "code\0slot_showscan\0on_pushButton_denglu_clicked"
+    "start_thread\0replyFinished1\0mybuttonAction\0"
+    "checkCode\0code\0slot_showscan\0"
+    "on_pushButton_denglu_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -53,7 +55,7 @@ static const uint qt_meta_data_Dialog[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       7,   14, // methods
+       8,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -61,15 +63,16 @@ static const uint qt_meta_data_Dialog[] = {
        3,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    0,   49,    2, 0x06 /* Public */,
-       3,    0,   50,    2, 0x06 /* Public */,
-       4,    5,   51,    2, 0x06 /* Public */,
+       1,    0,   54,    2, 0x06 /* Public */,
+       3,    0,   55,    2, 0x06 /* Public */,
+       4,    5,   56,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       5,    0,   62,    2, 0x08 /* Private */,
-       6,    1,   63,    2, 0x08 /* Private */,
-       8,    0,   66,    2, 0x08 /* Private */,
-       9,    0,   67,    2, 0x08 /* Private */,
+       5,    0,   67,    2, 0x0a /* Public */,
+       6,    0,   68,    2, 0x08 /* Private */,
+       7,    1,   69,    2, 0x08 /* Private */,
+       9,    0,   72,    2, 0x08 /* Private */,
+      10,    0,   73,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void,
@@ -78,7 +81,8 @@ static const uint qt_meta_data_Dialog[] = {
 
  // slots: parameters
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString,    7,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::QString,    8,
     QMetaType::Void,
     QMetaType::Void,
 
@@ -94,10 +98,11 @@ void Dialog::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         case 0: _t->signal_start_thread(); break;
         case 1: _t->signal_mainshow(); break;
         case 2: _t->start_thread((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])),(*reinterpret_cast< QString(*)>(_a[3])),(*reinterpret_cast< QString(*)>(_a[4])),(*reinterpret_cast< QString(*)>(_a[5]))); break;
-        case 3: _t->mybuttonAction(); break;
-        case 4: _t->checkCode((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 5: _t->slot_showscan(); break;
-        case 6: _t->on_pushButton_denglu_clicked(); break;
+        case 3: _t->replyFinished1(); break;
+        case 4: _t->mybuttonAction(); break;
+        case 5: _t->checkCode((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 6: _t->slot_showscan(); break;
+        case 7: _t->on_pushButton_denglu_clicked(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -149,13 +154,13 @@ int Dialog::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 7)
+        if (_id < 8)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 7;
+        _id -= 8;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 7)
+        if (_id < 8)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 7;
+        _id -= 8;
     }
     return _id;
 }

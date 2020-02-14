@@ -55,6 +55,8 @@ void upLoadInvoiceThread::clearalldata()
     four_code="";
     type="";
     total="";
+    username="";
+    password="";
 }
 
 void upLoadInvoiceThread::slot_dosomthing()
@@ -98,10 +100,13 @@ void upLoadInvoiceThread::slot_dosomthing()
     jsonObject.insert("login_name", login_name);
     jsonObject.insert("four_code", four_code);
     jsonObject.insert("type", type);
+
+    jsonObject.insert("users", username);
+    jsonObject.insert("password", password);
+
     jsonObject.insert("total", total);
     jsonObject.insert("count", QString("%1").arg(_sumsuccpic.count()));
     jsonObject.insert("invoice", jsonArray);
-
 
     QJsonDocument document;
 

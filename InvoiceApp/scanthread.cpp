@@ -63,6 +63,11 @@ void scanThread::replyFinished1()
             {
                 QString identification = obj["identification"].toString();
                 strlist.insert("identification",identification);
+                //无需识别，直接就是成功发票
+                if(QString::compare( identification,"0", Qt::CaseInsensitive)==0)
+                {
+                      strlist.insert("invoicetype","success");
+                }
             }
 
             //strlist.insert("id",_picpath);
@@ -184,7 +189,7 @@ void scanThread::slot_dosomething(QString path,QString baoxiaoren,QString compan
         }
         imagePart5.setBodyDevice(file);
         file->setParent(multiPart);
-         multiPart->append(imagePart0);
+        multiPart->append(imagePart0);
         multiPart->append(imagePart1);
         multiPart->append(imagePart2);
         multiPart->append(imagePart3);

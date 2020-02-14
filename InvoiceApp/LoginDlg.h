@@ -32,7 +32,9 @@ public:
     QList<QStringList> getemployer();
 
 //public slots:
-//    void replyFinished1();
+    //    void replyFinished1();
+public slots:
+    void replyFinished1();
 private slots:
     void mybuttonAction();
     void checkCode(QString code);
@@ -53,7 +55,7 @@ private:
     bool rightCode;
     IndexDialog *_indexdlg;
     static Dialog* _logindlg;
-   // QNetworkAccessManager* m_pNetWorkManager;
+    QNetworkAccessManager* m_pNetWorkManager;
 
     // QNetworkReply* reply1 ;
 

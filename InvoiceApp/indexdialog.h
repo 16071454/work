@@ -26,7 +26,7 @@ class IndexDialog : public QDialog
 public:
     explicit IndexDialog(QWidget *parent = 0);
     ~IndexDialog();
-    void setusername(QString name);
+    void setusername(QString name, QString password);
     void setSuccessScorllArea();
     void setProblemScorllArea();
     void setFaildScorllArea();
@@ -127,6 +127,7 @@ private:
     int moveType;
     QString _cause;
     QString _username;
+    QString _password;
     INVOICETYPE _scanType;
     QLabel *faildlabel;
     QLabel *problemlabel;
