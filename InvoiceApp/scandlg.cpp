@@ -81,6 +81,7 @@ void scandlg::setText(INVOICETYPE type)
 {
 
     _scanform->setText(type);
+    //无需识别
     if(type == ADDWORK)
     {
         identification = "0";
