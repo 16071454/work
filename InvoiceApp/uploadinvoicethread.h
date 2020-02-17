@@ -19,6 +19,8 @@ public:
     void settype(QString name){type =name; }
     void settotal(QString name){total =name; }
     void clearalldata();
+    void setusername(QString name){username = name;}
+    void setpassword(QString name){password = name;}
 signals:
     void signal_finished(QString fivecode);
 
@@ -32,6 +34,8 @@ private:
     QString four_code;
     QString type;
     QString total;
+    QString username;
+    QString password;
 
 };
 

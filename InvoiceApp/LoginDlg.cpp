@@ -18,6 +18,7 @@ Dialog::Dialog(QWidget *parent) :
     QDialog(parent),
     rightCode(false),
     _indexdlg(NULL),
+    m_pNetWorkManager(NULL),
     ui(new Ui::Dialog)
 {
     ui->setupUi(this);
@@ -191,22 +192,72 @@ void Dialog::slot_showscan()
         _indexdlg = new IndexDialog();
     }
 
+    if(m_pNetWorkManager == NULL)
+    {
+        m_pNetWorkManager = new QNetworkAccessManager();
+    }
+    QString m_strServerAddr = "http://139.129.103.28:8080/login_oa";
+
+    QNetworkRequest request;
+    request.setUrl(QUrl(m_strServerAddr));
+    QHttpMultiPart *multiPart = new QHttpMultiPart(QHttpMultiPart::FormDataType);
+
+    QHttpPart imagePart1;
+    imagePart1.setHeader(QNetworkRequest::ContentTypeHeader,QVariant("text/plain"));
+    imagePart1.setHeader(QNetworkRequest::ContentDispositionHeader, QString("form-data;name=\"username\""));
+    imagePart1.setBody(ui->lineEdit_user_name->text().toLocal8Bit());
+
+
+    QHttpPart imagePart0;
+    imagePart0.setHeader(QNetworkRequest::ContentTypeHeader,QVariant("text/plain"));
+    imagePart0.setHeader(QNetworkRequest::ContentDispositionHeader, QString("form-data;name=\"password\""));
+    imagePart0.setBody(ui->lineEdit__pwd->text().toLocal8Bit());
+
+    multiPart->append(imagePart1);
+    multiPart->append(imagePart0);
+
+
+    QNetworkReply*reply1 =m_pNetWorkManager->post(request, multiPart);
+    multiPart->setParent(reply1);
+
+    connect(reply1, SIGNAL(finished()), this, SLOT(replyFinished1()));
+
+
 //   if(ui->lineEdit_user_name->text()== "admin" && rightCode==true && ui->lineEdit__pwd->text()== "123456")
 //    {
-        _indexdlg->setusername(ui->lineEdit_user_name->text());
+
+
+//    }
+//    else
+//    {
+//
+//    }
+}
+
+void Dialog::replyFinished1()
+{
+    QNetworkReply* reply1 = (QNetworkReply*)sender();
+    QString repl =reply1->readAll();
+
+    QByteArray ba = repl.toUtf8();
+    if(QString(ba)=="1" &&  rightCode==true )
+    {
+        _indexdlg->setusername(ui->lineEdit_user_name->text(),ui->lineEdit__pwd->text());
+
         ui->lineEdit_user_name->clear();
         ui->lineEdit__pwd->clear();
         ui->lineEdit_vertify_code->clear();
         Dialog::instanceLogin()->hide();
         _indexdlg->setSuccessScorllArea();
         _indexdlg->show();
+    }
+    else
+    {
+        QMessageBox::information(NULL,"提示","登录失败");
+               return;
+    }
 
-//    }
-//    else
-//    {
-//        QMessageBox::information(NULL,"提示","登录失败");
-//        return;
-//    }
+    reply1->deleteLater();
 }
 
 

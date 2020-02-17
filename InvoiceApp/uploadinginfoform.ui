@@ -130,13 +130,13 @@ font: 75 12pt &quot;微软雅黑&quot;;</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>280</width>
+           <width>350</width>
            <height>0</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>280</width>
+           <width>350</width>
            <height>16777215</height>
           </size>
          </property>
@@ -193,13 +193,13 @@ font: 75 12pt &quot;微软雅黑&quot;;</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>280</width>
+           <width>350</width>
            <height>0</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>280</width>
+           <width>350</width>
            <height>16777215</height>
           </size>
          </property>
@@ -381,13 +381,13 @@ font: 75 12pt &quot;微软雅黑&quot;;</string>
          </property>
          <property name="minimumSize">
           <size>
-           <width>280</width>
+           <width>350</width>
            <height>0</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>280</width>
+           <width>350</width>
            <height>16777215</height>
           </size>
          </property>

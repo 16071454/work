@@ -136,13 +136,14 @@ IndexDialog::~IndexDialog()
     delete ui;
 }
 
-void IndexDialog::setusername(QString name)
+void IndexDialog::setusername(QString name,QString password)
 {
     _head->setUsername(name);
     // _updownform->setName(name);
     _scandlg->setusername(name);
     _webpage->setusername(name);
     _username = name;
+    _password = password;
 }
 
 void IndexDialog::deleteAllitemsOfLayout(QLayout* layout){
@@ -1728,6 +1729,8 @@ void IndexDialog::on_pushButton_sumbit_clicked()//提交发票
     _uploainvoicethread->setcodee(_updownform->getfourcode());
      _uploainvoicethread->settype(_updownform->gettype());
      _uploainvoicethread->settotal(_updownform->gettotal());
+     _uploainvoicethread->setpassword(_username);
+     _uploainvoicethread->setusername(_password);
     emit signal_start_thread();
 
 }

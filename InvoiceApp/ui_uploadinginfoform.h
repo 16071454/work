@@ -128,8 +128,8 @@ public:
         lineEdit_company->setObjectName(QStringLiteral("lineEdit_company"));
         sizePolicy2.setHeightForWidth(lineEdit_company->sizePolicy().hasHeightForWidth());
         lineEdit_company->setSizePolicy(sizePolicy2);
-        lineEdit_company->setMinimumSize(QSize(280, 0));
-        lineEdit_company->setMaximumSize(QSize(280, 16777215));
+        lineEdit_company->setMinimumSize(QSize(350, 0));
+        lineEdit_company->setMaximumSize(QSize(350, 16777215));
         lineEdit_company->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
 "font: 75 10pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";\n"
 "background-color: rgb(200, 200, 200);"));
@@ -160,8 +160,8 @@ public:
         sizePolicy3.setVerticalStretch(0);
         sizePolicy3.setHeightForWidth(lineEdit_wbs->sizePolicy().hasHeightForWidth());
         lineEdit_wbs->setSizePolicy(sizePolicy3);
-        lineEdit_wbs->setMinimumSize(QSize(280, 0));
-        lineEdit_wbs->setMaximumSize(QSize(280, 16777215));
+        lineEdit_wbs->setMinimumSize(QSize(350, 0));
+        lineEdit_wbs->setMaximumSize(QSize(350, 16777215));
         lineEdit_wbs->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
 "font: 75 10pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";\n"
 "background-color: rgb(200, 200, 200);"));
@@ -246,8 +246,8 @@ public:
         comboBox->setObjectName(QStringLiteral("comboBox"));
         sizePolicy3.setHeightForWidth(comboBox->sizePolicy().hasHeightForWidth());
         comboBox->setSizePolicy(sizePolicy3);
-        comboBox->setMinimumSize(QSize(280, 0));
-        comboBox->setMaximumSize(QSize(280, 16777215));
+        comboBox->setMinimumSize(QSize(350, 0));
+        comboBox->setMaximumSize(QSize(350, 16777215));
         comboBox->setLayoutDirection(Qt::LeftToRight);
         comboBox->setStyleSheet(QStringLiteral(""));
 

@@ -67,12 +67,12 @@ void scanoptionForm::setText(INVOICETYPE type)
         break;
     case ADDWORK:
     {
-        ui->label->setText("正在扫描发票类:加班住宿餐饮类");
+        ui->label->setText("正在扫描发票类:无需识别验真类");
         _scantype = "误餐";
         QPixmap pmap(":/imag/saomiaoaddworknormal.png");
         ui->toolButton_3->setIcon(pmap);
         ui->toolButton_3->setIconSize(pmap.size());
-        ui->toolButton_3->setText("加班住宿餐饮类");
+        ui->toolButton_3->setText("无需识别验真类");
     }
 
        //   emit siganl_set_invoice_type(ADDWORK);
