@@ -1585,17 +1585,19 @@ void IndexDialog::slot_setSumpic(QMap<QString,QString> strlist)
         if(strlist.value("invoicetype")=="success")
         {
            _picform1 =  new picForm(SUCCEED,picpath,(_width-30)/3,strlist.value("orientation").toInt());
+           _picform1->structpicinfo.invoiceoperation=SUCCEED;
         }
         else
         {
              _picform1 =  new picForm(PROBLEM,picpath,(_width-30)/3,strlist.value("orientation").toInt());
+             _picform1->structpicinfo.invoiceoperation=PROBLEM;
         }
 
-        _picform1->structpicinfo.invoiceoperation=SUCCEED;
         _picform1->structpicinfo.invoicetype=_scanType;
         _picform1->structpicinfo.price = strlist.value("total").toFloat();
         _picform1->structpicinfo.roation = strlist.value("orientation");
         _picform1->structpicinfo.identification = strlist.value("identification");
+         _picform1->structpicinfo.iscontract = strlist.value("iscontract");
 
         _picform1->structpicinfo.checkRs = strlist.value("checkRs");
         _picform1->structpicinfo.checkRsDesc = strlist.value("checkRsDesc");

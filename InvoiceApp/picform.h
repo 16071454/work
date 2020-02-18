@@ -22,7 +22,7 @@ typedef struct InvoiceInfo
     QString roation;
     QString identification;
     QString receipttype;
-//    QString number;
+    QString iscontract;
 //    QString date;
 //    QString  pretax_amount;
 //    QString tax;
