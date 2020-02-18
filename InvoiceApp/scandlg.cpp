@@ -65,7 +65,7 @@ scandlg::scandlg(QWidget *parent) :
     QThread *thread = new QThread(this);
     _scanthread = new scanThread;
     _scanthread->moveToThread(thread);
-    connect(this,SIGNAL(signal_start_thread(QString,QString,QString,QString,QString,QString)),_scanthread,SLOT(slot_dosomething(QString,QString,QString,QString,QString,QString)));
+    connect(this,SIGNAL(signal_start_thread(QString,QString,QString,QString,QString,QString,QString)),_scanthread,SLOT(slot_dosomething(QString,QString,QString,QString,QString,QString,QString)));
     connect(_scanthread,SIGNAL(signal_vertify_finish(QMap<QString,QString>)),this,SLOT(slot_product_pic(QMap<QString,QString>)));
     thread->start();
 
@@ -81,14 +81,19 @@ void scandlg::setText(INVOICETYPE type)
 {
 
     _scanform->setText(type);
-    //无需识别
-    if(type == ADDWORK)
+    //无需识别//合同类
+    if(type == ADDWORK || type == TRAVEL)
     {
         identification = "0";
+        if(type == TRAVEL)
+        {
+            iscontract = "1";
+        }
     }
     else
     {
         identification ="1";
+         iscontract ="0";
     }
 }
 
@@ -171,7 +176,7 @@ void scandlg::slot_product_pic(QMap<QString,QString> str)
     emit signal_scan_end(str);
     bardlg->setvalue(scanlistindex);
     scanlistindex ++;
-   // QMessageBox::information(this,QString("%1").arg(scanlistindex),QString("%1").arg(scanlistindex));
+    QMessageBox::information(this,QString("%1").arg(scanlistindex),QString("%1").arg(scanlistindex));
     if(scanlistindex > mylist.count()-1)
     {
         bardlg->hide();
@@ -184,7 +189,7 @@ void scandlg::slot_product_pic(QMap<QString,QString> str)
     // if((scanlistindex%2)==0)
     //{
 
-    emit signal_start_thread(mylist.at(scanlistindex),_baxiaoren,_gongsi,_danjupingzheng,_scanform->getscantype(),identification);
+    emit signal_start_thread(mylist.at(scanlistindex),_baxiaoren,_gongsi,_danjupingzheng,_scanform->getscantype(),identification,iscontract);
 
     // }
 
@@ -213,7 +218,7 @@ void scandlg::onEndScan()
     bardlg->show();
     sde->photoProcess(dir_str);
 
-    emit signal_start_thread(mylist.at(scanlistindex),_baxiaoren,_gongsi,_danjupingzheng,_scanform->getscantype(),identification);//先上传第一个
+    emit signal_start_thread(mylist.at(scanlistindex),_baxiaoren,_gongsi,_danjupingzheng,_scanform->getscantype(),identification,iscontract);//先上传第一个
 }
 
 void scandlg::onDibAcquired(QPixmap pixmap)

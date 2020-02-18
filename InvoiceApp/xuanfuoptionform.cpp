@@ -24,6 +24,14 @@ void xuanfuoptionForm::seticon(INVOICEOPERATION type)
     }
     else
     {
+        if(type==TRAVEL || type==ADDWORK)
+        {
+             ui->pushButton_3->hide();
+        }
+        else
+        {
+            ui->pushButton_3->setVisible(true);
+        }
      ui->pushButton_2->setVisible(true);
     }
 }

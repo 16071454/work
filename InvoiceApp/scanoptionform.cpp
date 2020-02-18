@@ -79,12 +79,12 @@ void scanoptionForm::setText(INVOICETYPE type)
         break;
     case TRAVEL:
     {
-        ui->label->setText("正在扫描发票类:差旅招待住宿类");
+        ui->label->setText("正在扫描发票类:合同类");
          _scantype = "差旅";
         QPixmap pmap(":/imag/saomiaotravelnormal.png");
         ui->toolButton_3->setIcon(pmap);
         ui->toolButton_3->setIconSize(pmap.size());
-        ui->toolButton_3->setText("差旅招待住宿类");
+        ui->toolButton_3->setText("合同类");
     }
 
        //  emit siganl_set_invoice_type(TRAVEL);

@@ -38,7 +38,7 @@ public slots:
     void slot_upload_invoice();
     void slot_product_pic(QMap<QString, QString> str);
 signals:
-    void signal_start_thread(QString path,QString name,QString company,QString pingzheng,QString scantype,QString _identification);
+    void signal_start_thread(QString path,QString name,QString company,QString pingzheng,QString scantype,QString _identification,QString _iscontract);
     void signal_scan_end(QMap<QString,QString> str);
     void siganl_set_invoice_type(INVOICETYPE);
     void signal_back_index();
@@ -59,6 +59,7 @@ private:
     int sumcount;
     QString dir_str;
     QString identification;
+    QString iscontract;
 protected:
     //void paintEvent(QPaintEvent* thisEvent);
     //void resizeEvent(QResizeEvent* thisEvent);

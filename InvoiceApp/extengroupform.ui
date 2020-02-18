@@ -126,7 +126,7 @@ font: 10pt &quot;微软雅黑&quot;;</string>
          <string>招待餐费住宿类</string>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="res.qrc">
           <normaloff>:/imag/u316.png</normaloff>:/imag/u316.png</iconset>
         </property>
         <property name="iconSize">
@@ -166,7 +166,7 @@ font: 10pt &quot;微软雅黑&quot;;</string>
          <string>误餐费(团建类)</string>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="res.qrc">
           <normaloff>:/imag/teamwork.png</normaloff>:/imag/teamwork.png</iconset>
         </property>
         <property name="iconSize">
@@ -180,34 +180,6 @@ font: 10pt &quot;微软雅黑&quot;;</string>
         </property>
         <property name="autoRepeat">
          <bool>false</bool>
-        </property>
-        <property name="toolButtonStyle">
-         <enum>Qt::ToolButtonTextUnderIcon</enum>
-        </property>
-        <property name="autoRaise">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="toolButton_6">
-        <property name="styleSheet">
-         <string notr="true">color: rgb(255, 255, 255);
-background-color: rgb(102, 204, 183);
-font: 10pt &quot;微软雅黑&quot;;</string>
-        </property>
-        <property name="text">
-         <string>差旅招待住宿类</string>
-        </property>
-        <property name="icon">
-         <iconset>
-          <normaloff>:/imag/travel.png</normaloff>:/imag/travel.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>72</width>
-          <height>72</height>
-         </size>
         </property>
         <property name="toolButtonStyle">
          <enum>Qt::ToolButtonTextUnderIcon</enum>
@@ -234,8 +206,42 @@ font: 10pt &quot;微软雅黑&quot;;</string>
          <string>其他类</string>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="res.qrc">
           <normaloff>:/imag/other.png</normaloff>:/imag/other.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>72</width>
+          <height>72</height>
+         </size>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextUnderIcon</enum>
+        </property>
+        <property name="autoRaise">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="toolButton_6">
+        <property name="minimumSize">
+         <size>
+          <width>136</width>
+          <height>105</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(102, 204, 183);
+font: 10pt &quot;微软雅黑&quot;;</string>
+        </property>
+        <property name="text">
+         <string>合同类</string>
+        </property>
+        <property name="icon">
+         <iconset resource="res.qrc">
+          <normaloff>:/imag/travel.png</normaloff>:/imag/travel.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -268,7 +274,7 @@ font: 10pt &quot;微软雅黑&quot;;</string>
          <string>无需识别验真类</string>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="res.qrc">
           <normaloff>:/imag/addwork.png</normaloff>:/imag/addwork.png</iconset>
         </property>
         <property name="iconSize">
@@ -296,6 +302,8 @@ font: 10pt &quot;微软雅黑&quot;;</string>
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="res.qrc"/>
+ </resources>
  <connections/>
 </ui>

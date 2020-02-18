@@ -30,8 +30,8 @@ public:
     QHBoxLayout *horizontalLayout;
     QToolButton *toolButton;
     QToolButton *toolButton_2;
-    QToolButton *toolButton_6;
     QToolButton *toolButton_4;
+    QToolButton *toolButton_6;
     QToolButton *toolButton_3;
 
     void setupUi(QWidget *extengroupForm)
@@ -115,34 +115,35 @@ public:
 
         horizontalLayout->addWidget(toolButton_2);
 
-        toolButton_6 = new QToolButton(frame);
-        toolButton_6->setObjectName(QStringLiteral("toolButton_6"));
-        toolButton_6->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);\n"
-"background-color: rgb(102, 204, 183);\n"
-"font: 10pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
-        QIcon icon3;
-        icon3.addFile(QStringLiteral(":/imag/travel.png"), QSize(), QIcon::Normal, QIcon::Off);
-        toolButton_6->setIcon(icon3);
-        toolButton_6->setIconSize(QSize(72, 72));
-        toolButton_6->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
-        toolButton_6->setAutoRaise(true);
-
-        horizontalLayout->addWidget(toolButton_6);
-
         toolButton_4 = new QToolButton(frame);
         toolButton_4->setObjectName(QStringLiteral("toolButton_4"));
         toolButton_4->setMinimumSize(QSize(136, 105));
         toolButton_4->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);\n"
 "background-color: rgb(102, 204, 183);\n"
 "font: 10pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
-        QIcon icon4;
-        icon4.addFile(QStringLiteral(":/imag/other.png"), QSize(), QIcon::Normal, QIcon::Off);
-        toolButton_4->setIcon(icon4);
+        QIcon icon3;
+        icon3.addFile(QStringLiteral(":/imag/other.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton_4->setIcon(icon3);
         toolButton_4->setIconSize(QSize(72, 72));
         toolButton_4->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
         toolButton_4->setAutoRaise(true);
 
         horizontalLayout->addWidget(toolButton_4);
+
+        toolButton_6 = new QToolButton(frame);
+        toolButton_6->setObjectName(QStringLiteral("toolButton_6"));
+        toolButton_6->setMinimumSize(QSize(136, 105));
+        toolButton_6->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);\n"
+"background-color: rgb(102, 204, 183);\n"
+"font: 10pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
+        QIcon icon4;
+        icon4.addFile(QStringLiteral(":/imag/travel.png"), QSize(), QIcon::Normal, QIcon::Off);
+        toolButton_6->setIcon(icon4);
+        toolButton_6->setIconSize(QSize(72, 72));
+        toolButton_6->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
+        toolButton_6->setAutoRaise(true);
+
+        horizontalLayout->addWidget(toolButton_6);
 
         toolButton_3 = new QToolButton(frame);
         toolButton_3->setObjectName(QStringLiteral("toolButton_3"));
@@ -176,8 +177,8 @@ public:
         toolButton_5->setText(QApplication::translate("extengroupForm", "...", 0));
         toolButton->setText(QApplication::translate("extengroupForm", "\346\213\233\345\276\205\351\244\220\350\264\271\344\275\217\345\256\277\347\261\273", 0));
         toolButton_2->setText(QApplication::translate("extengroupForm", "\350\257\257\351\244\220\350\264\271(\345\233\242\345\273\272\347\261\273)", 0));
-        toolButton_6->setText(QApplication::translate("extengroupForm", "\345\267\256\346\227\205\346\213\233\345\276\205\344\275\217\345\256\277\347\261\273", 0));
         toolButton_4->setText(QApplication::translate("extengroupForm", "\345\205\266\344\273\226\347\261\273", 0));
+        toolButton_6->setText(QApplication::translate("extengroupForm", "\345\220\210\345\220\214\347\261\273", 0));
         toolButton_3->setText(QApplication::translate("extengroupForm", "\346\227\240\351\234\200\350\257\206\345\210\253\351\252\214\347\234\237\347\261\273", 0));
     } // retranslateUi
 

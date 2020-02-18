@@ -16,7 +16,7 @@ public:
 signals:
     void signal_vertify_finish(QMap<QString,QString> _strlist);
 public slots:
-    void slot_dosomething(QString path, QString baoxiaoren, QString company, QString certify, QString scantype, QString _identification);
+    void slot_dosomething(QString path, QString baoxiaoren, QString company, QString certify, QString scantype, QString _identification, QString _iscontract);
     void replyFinished1();
 private:
     QNetworkAccessManager * m_pNetWorkManager;

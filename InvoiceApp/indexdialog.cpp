@@ -273,7 +273,7 @@ void IndexDialog::setsucessaddworktable()
         datalist.append(price);
         QString prostr = QString("%1").arg(succaddworklist.at(i)->structpicinfo.problem);
         datalist.append(prostr);
-        _successTable->setDataView(datalist);
+      //  _successTable->setDataView(datalist);
     }
 }
 
@@ -298,7 +298,7 @@ void IndexDialog::setsucesstraveltable()
         datalist.append(price);
         QString prostr = QString("%1").arg(succtravellist.at(i)->structpicinfo.problem);
         datalist.append(prostr);
-        _successTable->setDataView(datalist);
+        //_successTable->setDataView(datalist);
     }
 }
 
@@ -508,7 +508,7 @@ void IndexDialog::setsucesstravelwidget()
 
     if(successtravellabel==NULL)
     {
-        successtravellabel = new QLabel("差旅招待住宿类");
+        successtravellabel = new QLabel("合同类");
         successtravellabel->setStyleSheet("color:black;font: 75 12pt \"微软雅黑\";");
         _vlayout->addWidget(successtravellabel);
     }
@@ -878,7 +878,7 @@ void IndexDialog::setproblemtravelwidget()
 
     if(problemtravellabel==NULL)
     {
-        problemtravellabel = new QLabel("差旅招待住宿类");
+        problemtravellabel = new QLabel("合同类");
         problemtravellabel->setStyleSheet("color:black;font: 75 12pt \"微软雅黑\";");
         _vlayout->addWidget(problemtravellabel);
     }
@@ -999,6 +999,8 @@ void IndexDialog::setfaildwidget()
 void IndexDialog::setSuccessScorllArea(/*QList<picForm *> picInfo*/)
 {
     ///////table
+    ///
+    QMessageBox::information(NULL,QString("pic count"),QString("%1").arg(_sumsuccpic.count()));
 
     deleteAllitemsOfLayout(_vlayout);
     if(_successTable==NULL)

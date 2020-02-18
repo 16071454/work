@@ -70,6 +70,17 @@ void scanThread::replyFinished1()
                 }
             }
 
+           if (obj.contains("iscontract"))
+            {
+                QString iscontract = obj["iscontract"].toString();
+                strlist.insert("iscontract",iscontract);
+                //无需识别，直接就是成功发票
+                if(QString::compare( iscontract,"1", Qt::CaseInsensitive)==0)
+                {
+                      strlist.insert("invoicetype","success");
+                }
+            }
+
             //strlist.insert("id",_picpath);
             if (obj.contains("orientation"))
             {
@@ -139,7 +150,7 @@ void scanThread::replyFinished1()
 }
 
 
-void scanThread::slot_dosomething(QString path,QString baoxiaoren,QString company,QString certify,QString scantype,QString _identification)
+void scanThread::slot_dosomething(QString path,QString baoxiaoren,QString company,QString certify,QString scantype,QString _identification,QString _iscontract)
 {
     _picpath = path;
         if(m_pNetWorkManager == NULL)
@@ -159,6 +170,11 @@ void scanThread::slot_dosomething(QString path,QString baoxiaoren,QString compan
         imagePart0.setHeader(QNetworkRequest::ContentTypeHeader,QVariant("text/plain"));
         imagePart0.setHeader(QNetworkRequest::ContentDispositionHeader, QString("form-data;name=\"identification\""));
         imagePart0.setBody(_identification.toLocal8Bit());
+
+        QHttpPart imagePart6;
+        imagePart6.setHeader(QNetworkRequest::ContentTypeHeader,QVariant("text/plain"));
+        imagePart6.setHeader(QNetworkRequest::ContentDispositionHeader, QString("form-data;name=\"iscontract\""));
+        imagePart6.setBody(_iscontract.toLocal8Bit());
 
         QHttpPart imagePart1;
         imagePart1.setHeader(QNetworkRequest::ContentTypeHeader,QVariant("text/plain"));
@@ -194,6 +210,7 @@ void scanThread::slot_dosomething(QString path,QString baoxiaoren,QString compan
         multiPart->append(imagePart2);
         multiPart->append(imagePart3);
         multiPart->append(imagePart4);
+        multiPart->append(imagePart6);
         multiPart->append(imagePart5);
 
 
