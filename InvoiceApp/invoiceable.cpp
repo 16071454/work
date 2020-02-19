@@ -1,6 +1,9 @@
 ﻿#include "invoiceable.h"
 #include "ui_invoiceable.h"
 #include <QMessageBox>
+#include <QDir>
+#include <QFile>
+#include <QTextStream>
 
 #pragma execution_character_set("utf-8")
 
@@ -103,6 +106,25 @@ void Invoiceable::setDataView(QStringList piclist)
     _amount+=1;
 
     emit signal_jisuan(_amount,_sumprice);
+
+    QDir* dir = new QDir();
+    if(!dir->exists("D:/new1job")){
+        dir->mkpath("D:/new1job");
+    }
+
+
+    QFile file("D:/new1job/log.txt");
+
+    if(!file.open(QIODevice::ReadWrite|QIODevice::Text|QIODevice::Append))
+    {
+        return ;
+    }
+
+    QTextStream stream(&file);
+    QString tt = QString("%1").arg(piclist.at(0));
+    stream<<"add pic information in table:Invoiceable::setDataView*****"+tt<<"\n";
+    file.close();
+
 
 }
 

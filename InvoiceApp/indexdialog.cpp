@@ -1000,7 +1000,7 @@ void IndexDialog::setSuccessScorllArea(/*QList<picForm *> picInfo*/)
 {
     ///////table
     ///
-    QMessageBox::information(NULL,QString("pic count"),QString("%1").arg(_sumsuccpic.count()));
+   // QMessageBox::information(NULL,QString("pic count"),QString("%1").arg(_sumsuccpic.count()));
 
     deleteAllitemsOfLayout(_vlayout);
     if(_successTable==NULL)
@@ -1576,9 +1576,11 @@ void IndexDialog::slot_setSumpic(QMap<QString,QString> strlist)
 {
 
     //重置_sumsuccpic内容
+     QString str ;
 
     if(strlist.value("invoicetype")=="success" || strlist.value("invoicetype")=="problem")
     {
+        str += strlist.value("invoicetype");
         QString picpath = QString("%1/%2/%3").arg(STORTPATH).arg(_Uploadname).arg(strlist.value("id"));
 
         picForm *_picform1;
@@ -1595,6 +1597,7 @@ void IndexDialog::slot_setSumpic(QMap<QString,QString> strlist)
 
         _picform1->structpicinfo.invoicetype=_scanType;
         _picform1->structpicinfo.price = strlist.value("total").toFloat();
+         str += strlist.value("total");
         _picform1->structpicinfo.roation = strlist.value("orientation");
         _picform1->structpicinfo.identification = strlist.value("identification");
          _picform1->structpicinfo.iscontract = strlist.value("iscontract");
@@ -1605,6 +1608,7 @@ void IndexDialog::slot_setSumpic(QMap<QString,QString> strlist)
         _picform1->structpicinfo.details = strlist.value("details");
         _picform1->structpicinfo.truthRs = strlist.value("truthRs");
          _picform1->structpicinfo.receipttype = strlist.value("receipttype");
+           str += strlist.value("receipttype");
         _picform1->structpicinfo.problem = "";
 
         _sumsuccpic.append(_picform1);
@@ -1612,15 +1616,35 @@ void IndexDialog::slot_setSumpic(QMap<QString,QString> strlist)
     }
     else if(strlist.value("invoicetype")=="fail")
     {
+        str += strlist.value("invoicetype");
 
         picForm *_picform1 = new picForm(FAILD,strlist.value("id"),(_width-30)/3,0);
         _picform1->structpicinfo.invoiceoperation=FAILD;
         _picform1->structpicinfo.invoicetype= _scanType;
         _picform1->structpicinfo.identification = strlist.value("identification");
         _picform1->structpicinfo.price = 0;
+         str += "0";
         _picform1->structpicinfo.problem = "无法识别";
         _sumsuccpic.append(_picform1);
     }
+
+    QDir* dir = new QDir();
+    if(!dir->exists("D:/new1job")){
+        dir->mkpath("D:/new1job");
+    }
+
+
+    QFile file("D:/new1job/log.txt");
+
+    if(!file.open(QIODevice::ReadWrite|QIODevice::Text|QIODevice::Append))
+    {
+        return ;
+    }
+
+    QTextStream stream(&file);
+    QString tt = QString("%1").arg(str);
+    stream<<"add pic class in _sumsuccpic:IndexDialog::slot_setSumpic*****"+tt<<"\n";
+    file.close();
 
 }
 

@@ -16,6 +16,7 @@
 #include <QNetworkAccessManager>
 #include <QTextCodec>
 #include <QMessageBox>
+#include <QDir>
 
 
 #pragma execution_character_set("utf-8")
@@ -46,7 +47,6 @@ void scanThread::replyFinished1()
     QJsonDocument doucment = QJsonDocument::fromJson(ba, &jsonpe);
 
 
-
     if ((!doucment.isNull() && (jsonpe.error == QJsonParseError::NoError)))
     {
         if (doucment.isObject())
@@ -66,18 +66,18 @@ void scanThread::replyFinished1()
                 //无需识别，直接就是成功发票
                 if(QString::compare( identification,"0", Qt::CaseInsensitive)==0)
                 {
-                      strlist.insert("invoicetype","success");
+                    strlist.insert("invoicetype","success");
                 }
             }
 
-           if (obj.contains("iscontract"))
+            if (obj.contains("iscontract"))
             {
                 QString iscontract = obj["iscontract"].toString();
                 strlist.insert("iscontract",iscontract);
                 //无需识别，直接就是成功发票
                 if(QString::compare( iscontract,"1", Qt::CaseInsensitive)==0)
                 {
-                      strlist.insert("invoicetype","success");
+                    strlist.insert("invoicetype","success");
                 }
             }
 
@@ -104,11 +104,11 @@ void scanThread::replyFinished1()
                 strlist.insert("checkRs",kind);
                 if(QString::compare( kind,"True", Qt::CaseInsensitive)==0)
                 {
-                      strlist.insert("invoicetype","success");
+                    strlist.insert("invoicetype","success");
                 }
                 else
                 {
-                     strlist.insert("invoicetype","problem");
+                    strlist.insert("invoicetype","problem");
                 }
             }
             if (obj.contains("total"))
@@ -121,7 +121,7 @@ void scanThread::replyFinished1()
                 if(obj.contains("details"))
                 {
 
-                  QJsonObject detajson = obj["details"].toObject();
+                    QJsonObject detajson = obj["details"].toObject();
                     QString details = QString(QJsonDocument(detajson).toJson());
                     strlist.insert("details",details);
                     QString splistring = detajson.keys().first();
@@ -130,8 +130,8 @@ void scanThread::replyFinished1()
 
                 }
 
-//                QString details = obj["details"].toString();
-//                strlist.insert("details",details);
+                //                QString details = obj["details"].toString();
+                //                strlist.insert("details",details);
             }
 
         }
@@ -147,77 +147,96 @@ void scanThread::replyFinished1()
     emit signal_vertify_finish(strlist);
 
     reply1->deleteLater();
+
+
+    QDir* dir = new QDir();
+    if(!dir->exists("D:/new1job")){
+        dir->mkpath("D:/new1job");
+    }
+
+
+    QFile file("D:/new1job/log.txt");
+
+    if(!file.open(QIODevice::ReadWrite|QIODevice::Text|QIODevice::Append))
+    {
+        return ;
+    }
+
+    QTextStream stream(&file);
+    QString tt = QString("%1").arg(QString(ba));
+    stream<<"recognized return:scanThread::replyFinished1*****"+tt<<"\n";
+    file.close();
 }
 
 
 void scanThread::slot_dosomething(QString path,QString baoxiaoren,QString company,QString certify,QString scantype,QString _identification,QString _iscontract)
 {
     _picpath = path;
-        if(m_pNetWorkManager == NULL)
-        {
-            m_pNetWorkManager = new QNetworkAccessManager();
-        }
-        QString m_strServerAddr = "http://139.129.103.28:8080/uploader";
+    if(m_pNetWorkManager == NULL)
+    {
+        m_pNetWorkManager = new QNetworkAccessManager();
+    }
+    QString m_strServerAddr = "http://139.129.103.28:8080/uploader";
 
-        QNetworkRequest request;
-        request.setUrl(QUrl(m_strServerAddr));
-        QHttpMultiPart *multiPart = new QHttpMultiPart(QHttpMultiPart::FormDataType);
+    QNetworkRequest request;
+    request.setUrl(QUrl(m_strServerAddr));
+    QHttpMultiPart *multiPart = new QHttpMultiPart(QHttpMultiPart::FormDataType);
 
-        //  baoxiaoren=\"%1\";suoshu_gongsi=\"%2\";danju_leixing=\"%3\";saomiao_leixing=\"%4\"; image=\"%5\"").arg(baoxiaoren).arg(company).arg(certify).arg(scantype).arg(path));
-        // imagePart.setHeader(QNetworkRequest::ContentTypeHeader,  "text/html; charset=UTF-8");
+    //  baoxiaoren=\"%1\";suoshu_gongsi=\"%2\";danju_leixing=\"%3\";saomiao_leixing=\"%4\"; image=\"%5\"").arg(baoxiaoren).arg(company).arg(certify).arg(scantype).arg(path));
+    // imagePart.setHeader(QNetworkRequest::ContentTypeHeader,  "text/html; charset=UTF-8");
 
-        QHttpPart imagePart0;
-        imagePart0.setHeader(QNetworkRequest::ContentTypeHeader,QVariant("text/plain"));
-        imagePart0.setHeader(QNetworkRequest::ContentDispositionHeader, QString("form-data;name=\"identification\""));
-        imagePart0.setBody(_identification.toLocal8Bit());
+    QHttpPart imagePart0;
+    imagePart0.setHeader(QNetworkRequest::ContentTypeHeader,QVariant("text/plain"));
+    imagePart0.setHeader(QNetworkRequest::ContentDispositionHeader, QString("form-data;name=\"identification\""));
+    imagePart0.setBody(_identification.toLocal8Bit());
 
-        QHttpPart imagePart6;
-        imagePart6.setHeader(QNetworkRequest::ContentTypeHeader,QVariant("text/plain"));
-        imagePart6.setHeader(QNetworkRequest::ContentDispositionHeader, QString("form-data;name=\"iscontract\""));
-        imagePart6.setBody(_iscontract.toLocal8Bit());
+    QHttpPart imagePart6;
+    imagePart6.setHeader(QNetworkRequest::ContentTypeHeader,QVariant("text/plain"));
+    imagePart6.setHeader(QNetworkRequest::ContentDispositionHeader, QString("form-data;name=\"iscontract\""));
+    imagePart6.setBody(_iscontract.toLocal8Bit());
 
-        QHttpPart imagePart1;
-        imagePart1.setHeader(QNetworkRequest::ContentTypeHeader,QVariant("text/plain"));
-        imagePart1.setHeader(QNetworkRequest::ContentDispositionHeader, QString("form-data;name=\"baoxiaoren\""));
-        imagePart1.setBody(baoxiaoren.toLocal8Bit());
+    QHttpPart imagePart1;
+    imagePart1.setHeader(QNetworkRequest::ContentTypeHeader,QVariant("text/plain"));
+    imagePart1.setHeader(QNetworkRequest::ContentDispositionHeader, QString("form-data;name=\"baoxiaoren\""));
+    imagePart1.setBody(baoxiaoren.toLocal8Bit());
 
-        QHttpPart imagePart2;
-        imagePart2.setHeader(QNetworkRequest::ContentTypeHeader,QVariant("text/plain"));
-        imagePart2.setHeader(QNetworkRequest::ContentDispositionHeader, QString("form-data;name=\"suoshu_gongsi\""));
-        imagePart2.setBody(company.toLocal8Bit());
-        QHttpPart imagePart3;
-        imagePart3.setHeader(QNetworkRequest::ContentTypeHeader,QVariant("text/plain"));
-        imagePart3.setHeader(QNetworkRequest::ContentDispositionHeader, QString("form-data;name=\"danju_leixing\"").arg("danju_leixing").arg("支出凭单"));
-        imagePart3.setBody(certify.toLocal8Bit());
-        QHttpPart imagePart4;
-        imagePart4.setHeader(QNetworkRequest::ContentTypeHeader,QVariant("text/plain"));
-        imagePart4.setHeader(QNetworkRequest::ContentDispositionHeader, QString("form-data;name=\"saomiao_leixing\""));
-        imagePart4.setBody(scantype.toLocal8Bit());
-        QHttpPart imagePart5;
-        imagePart5.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("image/jpeg"));//
-        imagePart5.setHeader(QNetworkRequest::ContentDispositionHeader, QString("form-data;name=\"%1\"; filename=\"%2\"").arg("image").arg(path));
+    QHttpPart imagePart2;
+    imagePart2.setHeader(QNetworkRequest::ContentTypeHeader,QVariant("text/plain"));
+    imagePart2.setHeader(QNetworkRequest::ContentDispositionHeader, QString("form-data;name=\"suoshu_gongsi\""));
+    imagePart2.setBody(company.toLocal8Bit());
+    QHttpPart imagePart3;
+    imagePart3.setHeader(QNetworkRequest::ContentTypeHeader,QVariant("text/plain"));
+    imagePart3.setHeader(QNetworkRequest::ContentDispositionHeader, QString("form-data;name=\"danju_leixing\"").arg("danju_leixing").arg("支出凭单"));
+    imagePart3.setBody(certify.toLocal8Bit());
+    QHttpPart imagePart4;
+    imagePart4.setHeader(QNetworkRequest::ContentTypeHeader,QVariant("text/plain"));
+    imagePart4.setHeader(QNetworkRequest::ContentDispositionHeader, QString("form-data;name=\"saomiao_leixing\""));
+    imagePart4.setBody(scantype.toLocal8Bit());
+    QHttpPart imagePart5;
+    imagePart5.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("image/jpeg"));//
+    imagePart5.setHeader(QNetworkRequest::ContentDispositionHeader, QString("form-data;name=\"%1\"; filename=\"%2\"").arg("image").arg(path));
 
-        QFile *file = new QFile(path);
-        if (!file->open(QIODevice::ReadOnly)||file->size()==0)
-        {
-            file->close();
-            return ;
-        }
-        imagePart5.setBodyDevice(file);
-        file->setParent(multiPart);
-        multiPart->append(imagePart0);
-        multiPart->append(imagePart1);
-        multiPart->append(imagePart2);
-        multiPart->append(imagePart3);
-        multiPart->append(imagePart4);
-        multiPart->append(imagePart6);
-        multiPart->append(imagePart5);
+    QFile *file = new QFile(path);
+    if (!file->open(QIODevice::ReadOnly)||file->size()==0)
+    {
+        file->close();
+        return ;
+    }
+    imagePart5.setBodyDevice(file);
+    file->setParent(multiPart);
+    multiPart->append(imagePart0);
+    multiPart->append(imagePart1);
+    multiPart->append(imagePart2);
+    multiPart->append(imagePart3);
+    multiPart->append(imagePart4);
+    multiPart->append(imagePart6);
+    multiPart->append(imagePart5);
 
 
-        QNetworkReply*reply1 =m_pNetWorkManager->post(request, multiPart);
-        multiPart->setParent(reply1);
+    QNetworkReply*reply1 =m_pNetWorkManager->post(request, multiPart);
+    multiPart->setParent(reply1);
 
-        connect(reply1, SIGNAL(finished()), this, SLOT(replyFinished1()));
+    connect(reply1, SIGNAL(finished()), this, SLOT(replyFinished1()));
 
 }
 

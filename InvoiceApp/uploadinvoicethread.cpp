@@ -14,6 +14,9 @@
 #include <QTextCodec>
 #include <QMessageBox>
 #include <QEventLoop>
+#include <QDir>
+#include <QFile>
+#include <QTextStream>
 
 #pragma execution_character_set("utf-8")
 
@@ -41,6 +44,24 @@ void upLoadInvoiceThread::replyFinished1()
 
     }
     reply->deleteLater();
+
+    QDir* dir = new QDir();
+    if(!dir->exists("D:/new1job")){
+        dir->mkpath("D:/new1job");
+    }
+
+
+    QFile file("D:/new1job/log.txt");
+
+    if(!file.open(QIODevice::ReadWrite|QIODevice::Text|QIODevice::Append))
+    {
+        return ;
+    }
+
+    QTextStream stream(&file);
+    QString tt = QString("%1").arg(repl);
+    stream<<"repl sumbit information to web:upLoadInvoiceThread::replyFinished1*****"+tt<<"\n";
+    file.close();
 }
 
 void upLoadInvoiceThread::setsumsucee(QList<picForm*> sumsuccpic)
@@ -114,7 +135,7 @@ void upLoadInvoiceThread::slot_dosomthing()
 
     QByteArray byteArray =document.toJson(QJsonDocument::Compact);
 
-  //  QByteArray byteArray =("{\"count\":\"1\",\"four_code\":\"1010\",\"invoice\":[],\"login_name\":\"晁岱全\",\"total\":\"90\",\"type\":\"支出凭单\"}");//QString(byteArray);
+  //  QByteArray byteArray =("{\"count\":\"1\",\"four_code\":\"1010\",\"invoice\":[],,\"iscontract\":"1",\"login_name\":\"晁岱全\",\"total\":\"90\",\"type\":\"支出凭单\"}");//QString(byteArray);
 
     QHttpPart imagePart1;
     imagePart1.setHeader(QNetworkRequest::ContentTypeHeader,QVariant("text/plain"));
@@ -126,5 +147,24 @@ void upLoadInvoiceThread::slot_dosomthing()
     QNetworkReply*reply =m_pNetWorkManager->post(request,multiPart);
     multiPart->setParent(reply);
     connect(reply, SIGNAL(finished()), this, SLOT(replyFinished1()));
+
+    QDir* dir = new QDir();
+    if(!dir->exists("D:/new1job")){
+        dir->mkpath("D:/new1job");
+    }
+
+
+    QFile file("D:/new1job/log.txt");
+
+    if(!file.open(QIODevice::ReadWrite|QIODevice::Text|QIODevice::Append))
+    {
+        return ;
+    }
+
+    QTextStream stream(&file);
+    QString tt = QString("%1").arg(QString(byteArray));
+    stream<<"sumbit information to web:upLoadInvoiceThread::slot_dosomthing*****"+tt<<"\n";
+    file.close();
+
 }
 

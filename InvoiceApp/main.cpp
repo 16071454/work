@@ -10,55 +10,57 @@ extern bool isdhow;
 
 int main(int argc, char *argv[])
 {
-
-//    int dsd=1;
-//    QDir* dir = new QDir();
-//    if(!dir->exists("D:/new1job/invoice1")){
-//        dir->mkpath("D:/new1job/invoice1");
-//    }
+    QTextCodec *codec = QTextCodec::codecForName("UTF-8");
+    QTextCodec::setCodecForLocale(codec);
 
 
-//    QFile file("D:/new1job/invoice1/time.txt");
+//        int dsd=1;
+//        QDir* dir = new QDir();
+//        if(!dir->exists("D:/new1job/invoice1")){
+//            dir->mkpath("D:/new1job/invoice1");
+//        }
 
-//    if(!file.open(QIODevice::ReadWrite|QIODevice::Text))
-//    {
-//        return 0;
-//    }
 
-//    QTextStream txtInput(&file);
-//    QString lineStr;
-//    while (!txtInput.atEnd())
-//    {
-//        lineStr = txtInput.readLine();  //读取数据
+//        QFile file("D:/new1job/invoice1/time.txt");
 
-//    }
-
-//    //QByteArray t = file.readAll();
-//    //  QString cishu = lineStr;
-//    if(lineStr.isEmpty())
-//    {
-//        QTextStream stream(&file);
-//        QString tt = QString("%1").arg(dsd);
-//        stream<<"time_str:"+tt<<"\n";
-
-//    }
-//    else
-//    {
-//        QStringList dade = lineStr.split(":");
-//        int ss= QString(dade.last()).toInt();
-//        if(ss==160)
+//        if(!file.open(QIODevice::ReadWrite|QIODevice::Text))
 //        {
 //            return 0;
 //        }
-//        ss++;
-//        QTextStream stream(&file);
-//        QString tt = QString("%1").arg(ss);
-//        stream<<"time_str:"+tt<<"\n";
 
-//    }
-//    file.close();
-    QTextCodec *codec = QTextCodec::codecForName("UTF-8");
-    QTextCodec::setCodecForLocale(codec);
+    //    QTextStream txtInput(&file);
+    //    QString lineStr;
+    //    while (!txtInput.atEnd())
+    //    {
+    //        lineStr = txtInput.readLine();  //读取数据
+
+    //    }
+
+    //    //QByteArray t = file.readAll();
+    //    //  QString cishu = lineStr;
+    //    if(lineStr.isEmpty())
+    //    {
+    //        QTextStream stream(&file);
+    //        QString tt = QString("%1").arg(dsd);
+    //        stream<<"time_str:"+tt<<"\n";
+
+    //    }
+    //    else
+    //    {
+    //        QStringList dade = lineStr.split(":");
+    //        int ss= QString(dade.last()).toInt();
+    //        if(ss==160)
+    //        {
+    //            return 0;
+    //        }
+    //        ss++;
+    //        QTextStream stream(&file);
+    //        QString tt = QString("%1").arg(ss);
+    //        stream<<"time_str:"+tt<<"\n";
+
+    //    }
+    //    file.close();
+
     QApplication a(argc, argv);
 
     QFile qss(":/style.qss");
