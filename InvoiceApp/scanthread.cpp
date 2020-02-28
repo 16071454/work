@@ -118,8 +118,6 @@ void scanThread::replyFinished1()
             }
             if(obj.contains("details"))
             {
-                if(obj.contains("details"))
-                {
 
                     QJsonObject detajson = obj["details"].toObject();
                     QString details = QString(QJsonDocument(detajson).toJson());
@@ -128,10 +126,27 @@ void scanThread::replyFinished1()
                     QString receipttype = splistring.split("-").last();
                     strlist.insert("receipttype",receipttype);
 
-                }
+            }
+            if(obj.contains("fapiao_type"))
+            {
 
-                //                QString details = obj["details"].toString();
-                //                strlist.insert("details",details);
+                QString fapiao_type = obj["fapiao_type"].toString();
+                strlist.insert("fapiao_type",fapiao_type);
+
+            }
+            if(obj.contains("isChailv"))
+            {
+                QString isChailv = obj["isChailv"].toString();
+                strlist.insert("isChailv",isChailv);
+
+            }
+            if(obj.contains("ChailvDetails"))
+            {
+
+                    QJsonObject ChailvDetails = obj["ChailvDetails"].toObject();
+                    QString details = QString(QJsonDocument(ChailvDetails).toJson());
+                    strlist.insert("ChailvDetails",details);
+
             }
 
         }

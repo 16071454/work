@@ -38,14 +38,16 @@ typedef struct InvoiceInfo
 //    QString receiptor;
 //    QString reviewer;
 //    QString issuer;
-//    QString item_names;
-//    QString service_name;
-//    QString province;
+
+    QString ChailvDetails;
+    QString isChailv;
+    QString fapiao_type;
 
     QString checkRs;
     QString checkRsDesc;
     QString truthRs;
     QString details;
+
 
 }INFO;
 

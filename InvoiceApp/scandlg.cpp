@@ -23,6 +23,7 @@ scandlg::scandlg(QWidget *parent) :
     bardlg(NULL),
     m_pTwain(NULL),
     sumcount(0),
+    clipboard(NULL),
     ui(new Ui::scandlg)
 {
     ui->setupUi(this);
@@ -211,7 +212,7 @@ void scandlg::slot_get_localphoto(int type)
     if(type==1)//剪切板
     {
 
-        if(!clipboard)
+        if(clipboard == NULL)
         {
             clipboard = QApplication::clipboard();   //获取系统剪贴板指针
         }

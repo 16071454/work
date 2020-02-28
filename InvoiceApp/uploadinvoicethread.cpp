@@ -99,7 +99,7 @@ void upLoadInvoiceThread::slot_dosomthing()
     for(int i=0;i<_sumsuccpic.count();i++)
     {
         QJsonObject pageObject;
-        if(_sumsuccpic.at(i)->structpicinfo.invoiceoperation == SUCCEED || (_sumsuccpic.at(i)->structpicinfo.invoiceoperation == PROBLEM && (!_sumsuccpic.at(i)->structpicinfo.details.isEmpty())))
+        if(_sumsuccpic.at(i)->structpicinfo.invoiceoperation != FAILD )
         {
             pageObject.insert("id",_sumsuccpic.at(i)->structpicinfo.id);
             pageObject.insert("total",QString("%1").arg(_sumsuccpic.at(i)->structpicinfo.price));
@@ -107,7 +107,12 @@ void upLoadInvoiceThread::slot_dosomthing()
             pageObject.insert("checkRsDesc",_sumsuccpic.at(i)->structpicinfo.problem);
             pageObject.insert("orientation",_sumsuccpic.at(i)->structpicinfo.roation);
             pageObject.insert("truthRs",_sumsuccpic.at(i)->structpicinfo.truthRs);
-           // pageObject.insert("identification",_sumsuccpic.at(i)->structpicinfo.identification);
+            pageObject.insert("identification",_sumsuccpic.at(i)->structpicinfo.identification);
+            pageObject.insert("iscontract",_sumsuccpic.at(i)->structpicinfo.iscontract);
+            pageObject.insert("ChailvDetails",_sumsuccpic.at(i)->structpicinfo.ChailvDetails);
+             pageObject.insert("fapiao_type",_sumsuccpic.at(i)->structpicinfo.fapiao_type);
+             pageObject.insert("isChailv",_sumsuccpic.at(i)->structpicinfo.isChailv);
+
             QJsonDocument jsonDocument = QJsonDocument::fromJson(_sumsuccpic.at(i)->structpicinfo.details.toUtf8());
 
             QJsonObject jsonObject = jsonDocument.object();
@@ -126,6 +131,8 @@ void upLoadInvoiceThread::slot_dosomthing()
     jsonObject.insert("password", username);
 
     jsonObject.insert("total", total);
+    jsonObject.insert("count", QString("%1").arg(_sumsuccpic.count()));
+    //jsonObject.insert("identification", total);
     jsonObject.insert("count", QString("%1").arg(_sumsuccpic.count()));
     jsonObject.insert("invoice", jsonArray);
 

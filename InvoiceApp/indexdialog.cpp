@@ -458,7 +458,7 @@ void IndexDialog::setsucessaddworkwidget()
 
     if(successaddworklabel==NULL)
     {
-        successaddworklabel = new QLabel("加班餐费住宿类");
+        successaddworklabel = new QLabel("无需识别验真类");
         successaddworklabel->setStyleSheet("color:black;font: 75 12pt \"微软雅黑\";");
         _vlayout->addWidget(successaddworklabel);
     }
@@ -830,7 +830,7 @@ void IndexDialog::setproblemaddworkwidget()
 
     if(problemaddworklabel==NULL)
     {
-        problemaddworklabel = new QLabel("加班餐费住宿类");
+        problemaddworklabel = new QLabel("无需识别验真类");
         problemaddworklabel->setStyleSheet("color:black;font: 75 12pt \"微软雅黑\";");
         _vlayout->addWidget(problemaddworklabel);
     }
@@ -1609,6 +1609,9 @@ void IndexDialog::slot_setSumpic(QMap<QString,QString> strlist)
         _picform1->structpicinfo.details = strlist.value("details");
         _picform1->structpicinfo.truthRs = strlist.value("truthRs");
          _picform1->structpicinfo.receipttype = strlist.value("receipttype");
+          _picform1->structpicinfo.ChailvDetails = strlist.value("ChailvDetails");
+           _picform1->structpicinfo.fapiao_type = strlist.value("fapiao_type");
+            _picform1->structpicinfo.isChailv = strlist.value("isChailv");
 
         _picform1->structpicinfo.problem = "";
 
@@ -1624,6 +1627,7 @@ void IndexDialog::slot_setSumpic(QMap<QString,QString> strlist)
         _picform1->structpicinfo.invoiceoperation=FAILD;
         _picform1->structpicinfo.invoicetype= _scanType;
         _picform1->structpicinfo.identification = strlist.value("identification");
+        _picform1->structpicinfo.iscontract = strlist.value("iscontract");
         _picform1->structpicinfo.price = 0;
         _picform1->structpicinfo.problem = "无法识别";
         _sumsuccpic.append(_picform1);
@@ -1696,6 +1700,7 @@ void IndexDialog::slot_delete_jiangji_oper(picForm *picform)
                 if(picform->structpicinfo.id == _sumsuccpic.at(i)->structpicinfo.id && _sumsuccpic.at(i)->structpicinfo.invoiceoperation==FAILD)
                 {
                     _sumsuccpic.removeAt(i);
+                    _uploainvoicethread->setsumsucee(_sumsuccpic);
                     break;
                 }
             }
