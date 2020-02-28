@@ -127,6 +127,8 @@ void upLoadInvoiceThread::slot_dosomthing()
 
     jsonObject.insert("total", total);
     jsonObject.insert("count", QString("%1").arg(_sumsuccpic.count()));
+    jsonObject.insert("identification", total);
+    jsonObject.insert("count", QString("%1").arg(_sumsuccpic.count()));
     jsonObject.insert("invoice", jsonArray);
 
     QJsonDocument document;

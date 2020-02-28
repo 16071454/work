@@ -168,3 +168,4 @@ void UploadingInfoForm::setCombtypeenable(bool enab)
 {
    ui->comboBox->setEnabled(enab);
 }
+

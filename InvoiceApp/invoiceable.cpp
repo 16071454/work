@@ -4,6 +4,7 @@
 #include <QDir>
 #include <QFile>
 #include <QTextStream>
+#include <QDate>
 
 #pragma execution_character_set("utf-8")
 
@@ -121,7 +122,7 @@ void Invoiceable::setDataView(QStringList piclist)
     }
 
     QTextStream stream(&file);
-    QString tt = QString("%1").arg(piclist.at(0));
+    QString tt = QString("%1:%2").arg(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss")).arg(piclist.at(0));
     stream<<"add pic information in table:Invoiceable::setDataView*****"+tt<<"\n";
     file.close();
 

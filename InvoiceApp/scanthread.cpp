@@ -17,7 +17,7 @@
 #include <QTextCodec>
 #include <QMessageBox>
 #include <QDir>
-
+#include <QDate>
 
 #pragma execution_character_set("utf-8")
 
@@ -47,7 +47,7 @@ void scanThread::replyFinished1()
     QJsonDocument doucment = QJsonDocument::fromJson(ba, &jsonpe);
 
 
-    if ((!doucment.isNull() && (jsonpe.error == QJsonParseError::NoError)))
+    if ((!doucment.isNull() && (jsonpe.error == QJsonParseError::NoError)) && QString::compare( repl,"{}")!=0 && !repl.contains("500")|| !repl.contains("Error"))
     {
         if (doucment.isObject())
         {
@@ -106,7 +106,7 @@ void scanThread::replyFinished1()
                 {
                     strlist.insert("invoicetype","success");
                 }
-                else
+               if(QString::compare( kind,"false", Qt::CaseInsensitive)==0)
                 {
                     strlist.insert("invoicetype","problem");
                 }
@@ -163,7 +163,7 @@ void scanThread::replyFinished1()
     }
 
     QTextStream stream(&file);
-    QString tt = QString("%1").arg(QString(ba));
+    QString tt = QString("%1:%2:%3").arg(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss")).arg(_picpath).arg(QString(ba));
     stream<<"recognized return:scanThread::replyFinished1*****"+tt<<"\n";
     file.close();
 }
@@ -206,7 +206,7 @@ void scanThread::slot_dosomething(QString path,QString baoxiaoren,QString compan
     imagePart2.setBody(company.toLocal8Bit());
     QHttpPart imagePart3;
     imagePart3.setHeader(QNetworkRequest::ContentTypeHeader,QVariant("text/plain"));
-    imagePart3.setHeader(QNetworkRequest::ContentDispositionHeader, QString("form-data;name=\"danju_leixing\"").arg("danju_leixing").arg("支出凭单"));
+    imagePart3.setHeader(QNetworkRequest::ContentDispositionHeader, QString("form-data;name=\"danju_leixing\""));
     imagePart3.setBody(certify.toLocal8Bit());
     QHttpPart imagePart4;
     imagePart4.setHeader(QNetworkRequest::ContentTypeHeader,QVariant("text/plain"));
@@ -237,6 +237,32 @@ void scanThread::slot_dosomething(QString path,QString baoxiaoren,QString compan
     multiPart->setParent(reply1);
 
     connect(reply1, SIGNAL(finished()), this, SLOT(replyFinished1()));
+
+    QDir* dir = new QDir();
+    if(!dir->exists("D:/new1job")){
+        dir->mkpath("D:/new1job");
+    }
+
+
+    QFile file1("D:/new1job/log.txt");
+
+    if(!file1.open(QIODevice::ReadWrite|QIODevice::Text|QIODevice::Append))
+    {
+        return ;
+    }
+
+    QTextStream stream(&file1);
+    QString tt1 = QString("%1:%2:%3").arg(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss")).arg("identification").arg(_identification);
+    QString tt2 = QString("iscontract:%2").arg(_iscontract);
+    QString tt3 = QString("baoxiaoren:%2").arg(baoxiaoren);
+    QString tt4 = QString("suoshu_gongsi:%2").arg(company);
+    QString tt5 = QString("danju_leixing:%2").arg(certify);
+    QString tt6 = QString("saomiao_leixing:%2").arg(scantype);
+    QString tt7 = QString("image:%2").arg(path);
+
+
+    stream<<"submit recognize invoice requiry *****"+tt7+tt2+tt3+tt4+tt5+tt6+tt1<<"\n";
+    file1.close();
 
 }
 

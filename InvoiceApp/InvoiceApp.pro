@@ -111,7 +111,7 @@ DISTFILES +=
 
 #INCLUDEPATH +=E:/opencv/build/include
 
-LIBS += -LE:/newjob/InvoiceApp/Include/opencv300/opencv/build/x64/vc12/lib/ -lopencv_world300\
+LIBS += -LE:/newjob/InvoiceApp/Include/opencv300/opencv/build/x64/vc12/lib/ -lopencv_world300d\
          -lgdi32
 #        -LE:/newjob/InvoiceApp/Include/opencv/build/x64/vc12/lib/ -lopencv_imgproc2410d\
 #        -LE:/newjob/InvoiceApp/Include/opencv/build/x64/vc12/lib/ -lopencv_photo2410d\

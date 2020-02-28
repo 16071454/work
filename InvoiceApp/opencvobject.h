@@ -11,6 +11,9 @@
 #include <iterator>
 #include <string>
 #include <time.h>
+#include <QDate>
+#include <QDir>
+#include <QFile>
 /*************OpenCV**************/
 //#include <opencv2/core/core.hpp>
 //#include <opencv2/imgproc/imgproc.hpp>

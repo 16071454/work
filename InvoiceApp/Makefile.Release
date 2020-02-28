@@ -17,7 +17,7 @@ CXXFLAGS      = -nologo -Zc:wchar_t -FS -O2 -MD -Zc:strictStrings -GR -W3 -w3410
 INCPATH       = -I. -IInclude\opencv300\opencv\build\include -I..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include -I..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtWebKitWidgets -I..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtPrintSupport -I..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtWidgets -I..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtWebKit -I..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtWinExtras -I..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtGui -I..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtANGLE -I..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtNetwork -I..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore -Irelease -I. -I..\..\Qt\Qt5.5.1\5.5\msvc2013_64\mkspecs\win32-msvc2013 
 LINKER        = link
 LFLAGS        = /NOLOGO /DYNAMICBASE /NXCOMPAT /INCREMENTAL:NO /SUBSYSTEM:WINDOWS "/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'"
-LIBS          = /LIBPATH:E:\Qt\Qt5.5.1\5.5\msvc2013_64\lib E:\Qt\Qt5.5.1\5.5\msvc2013_64\lib\qtmain.lib shell32.lib /LIBPATH:E:\Qt\Qt5.5.1\5.5\msvc2013_64\lib E:\Qt\Qt5.5.1\5.5\msvc2013_64\lib\Qt5Core.lib /LIBPATH:E:\newjob\InvoiceApp\Include\opencv300\opencv\build\x64\vc12\lib E:\newjob\InvoiceApp\Include\opencv300\opencv\build\x64\vc12\lib\opencv_world300.lib gdi32.lib E:\Qt\Qt5.5.1\5.5\msvc2013_64\lib\Qt5WebKitWidgets.lib E:\Qt\Qt5.5.1\5.5\msvc2013_64\lib\Qt5PrintSupport.lib E:\Qt\Qt5.5.1\5.5\msvc2013_64\lib\Qt5Widgets.lib E:\Qt\Qt5.5.1\5.5\msvc2013_64\lib\Qt5WebKit.lib E:\Qt\Qt5.5.1\5.5\msvc2013_64\lib\Qt5WinExtras.lib E:\Qt\Qt5.5.1\5.5\msvc2013_64\lib\Qt5Gui.lib E:\Qt\Qt5.5.1\5.5\msvc2013_64\lib\Qt5Network.lib E:\Qt\Qt5.5.1\5.5\msvc2013_64\lib\Qt5Core.lib 
+LIBS          = /LIBPATH:E:\Qt\Qt5.5.1\5.5\msvc2013_64\lib E:\Qt\Qt5.5.1\5.5\msvc2013_64\lib\qtmain.lib shell32.lib /LIBPATH:E:\Qt\Qt5.5.1\5.5\msvc2013_64\lib E:\Qt\Qt5.5.1\5.5\msvc2013_64\lib\Qt5Core.lib /LIBPATH:E:\newjob\InvoiceApp\Include\opencv300\opencv\build\x64\vc12\lib E:\newjob\InvoiceApp\Include\opencv300\opencv\build\x64\vc12\lib\opencv_world300d.lib gdi32.lib E:\Qt\Qt5.5.1\5.5\msvc2013_64\lib\Qt5WebKitWidgets.lib E:\Qt\Qt5.5.1\5.5\msvc2013_64\lib\Qt5PrintSupport.lib E:\Qt\Qt5.5.1\5.5\msvc2013_64\lib\Qt5Widgets.lib E:\Qt\Qt5.5.1\5.5\msvc2013_64\lib\Qt5WebKit.lib E:\Qt\Qt5.5.1\5.5\msvc2013_64\lib\Qt5WinExtras.lib E:\Qt\Qt5.5.1\5.5\msvc2013_64\lib\Qt5Gui.lib E:\Qt\Qt5.5.1\5.5\msvc2013_64\lib\Qt5Network.lib E:\Qt\Qt5.5.1\5.5\msvc2013_64\lib\Qt5Core.lib 
 QMAKE         = E:\Qt\Qt5.5.1\5.5\msvc2013_64\bin\qmake.exe
 IDC           = idc
 IDL           = midl
@@ -283,7 +283,7 @@ $(OBJECTS) $(LIBS)
 <<
 
 qmake: FORCE
-	@$(QMAKE) -spec win32-msvc2013 -o Makefile.Release InvoiceApp.pro
+	@$(QMAKE) -spec win32-msvc2013 "CONFIG+=debug" -o Makefile.Release InvoiceApp.pro
 
 qmake_all: FORCE
 
@@ -536,6 +536,9 @@ release\moc_LoginDlg.cpp: ..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtWidgets\QDi
 		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtGui\qpagesize.h \
 		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtPrintSupport\qtprintsupportglobal.h \
 		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore\QFile \
+		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtGui\QClipboard \
+		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtGui\qclipboard.h \
+		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore\QSharedPointer \
 		processbardialog.h \
 		scanlogodialog.h \
 		extengroupform.h \
@@ -1217,6 +1220,9 @@ release\moc_indexdialog.cpp: ..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtWidgets\
 		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtGui\qpagesize.h \
 		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtPrintSupport\qtprintsupportglobal.h \
 		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore\QFile \
+		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtGui\QClipboard \
+		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtGui\qclipboard.h \
+		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore\QSharedPointer \
 		processbardialog.h \
 		scanlogodialog.h \
 		extengroupform.h \
@@ -2142,6 +2148,9 @@ release\moc_scandlg.cpp: ..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtWidgets\QDia
 		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtGui\qpagesize.h \
 		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtPrintSupport\qtprintsupportglobal.h \
 		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore\QFile \
+		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtGui\QClipboard \
+		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtGui\qclipboard.h \
+		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore\QSharedPointer \
 		processbardialog.h \
 		scanlogodialog.h \
 		scandlg.h
@@ -3422,6 +3431,18 @@ release\moc_opencvobject.cpp: ..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore\QO
 		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore\qcontainerfwd.h \
 		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore\qisenum.h \
 		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore\qobject_impl.h \
+		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore\QDate \
+		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore\qdatetime.h \
+		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore\qshareddata.h \
+		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore\qhash.h \
+		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore\qpair.h \
+		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore\QDir \
+		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore\qdir.h \
+		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore\qfileinfo.h \
+		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore\qfile.h \
+		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore\qfiledevice.h \
+		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore\qiodevice.h \
+		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore\QFile \
 		Include\opencv300\opencv\build\include\opencv2\opencv.hpp \
 		Include\opencv300\opencv\build\include\opencv2\core.hpp \
 		Include\opencv300\opencv\build\include\opencv2\core\cvdef.h \
@@ -4620,6 +4641,9 @@ release\indexdialog.obj: indexdialog.cpp ..\..\Qt\Qt5.5.1\5.5\msvc2013_64\includ
 		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtGui\qpagesize.h \
 		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtPrintSupport\qtprintsupportglobal.h \
 		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore\QFile \
+		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtGui\QClipboard \
+		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtGui\qclipboard.h \
+		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore\QSharedPointer \
 		processbardialog.h \
 		scanlogodialog.h \
 		extengroupform.h \
@@ -4755,7 +4779,9 @@ release\invoiceable.obj: invoiceable.cpp ..\..\Qt\Qt5.5.1\5.5\msvc2013_64\includ
 		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore\qvector.h \
 		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore\qpoint.h \
 		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore\qset.h \
-		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore\qcontiguouscache.h
+		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore\qcontiguouscache.h \
+		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore\QDate \
+		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore\qdatetime.h
 
 release\picform.obj: picform.cpp 
 
@@ -5050,6 +5076,9 @@ release\scandlg.obj: scandlg.cpp ..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtWidg
 		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtGui\qpagesize.h \
 		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtPrintSupport\qtprintsupportglobal.h \
 		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore\QFile \
+		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtGui\QClipboard \
+		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtGui\qclipboard.h \
+		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore\QSharedPointer \
 		processbardialog.h \
 		scanlogodialog.h \
 		extengroupform.h \
@@ -5107,6 +5136,7 @@ release\scandlg.obj: scandlg.cpp ..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtWidg
 		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore\QEventLoop \
 		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore\qeventloop.h \
 		opencvobject.h \
+		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore\QDate \
 		Include\opencv300\opencv\build\include\opencv2\opencv.hpp \
 		Include\opencv300\opencv\build\include\opencv2\core.hpp \
 		Include\opencv300\opencv\build\include\opencv2\core\cvdef.h \
@@ -5313,7 +5343,8 @@ release\scanthread.obj: scanthread.cpp ..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\
 		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtGui\qtouchdevice.h \
 		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore\QDir \
 		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore\qdir.h \
-		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore\qfileinfo.h
+		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore\qfileinfo.h \
+		..\..\Qt\Qt5.5.1\5.5\msvc2013_64\include\QtCore\QDate
 
 release\dib.obj: dib.cpp 
 

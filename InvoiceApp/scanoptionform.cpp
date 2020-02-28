@@ -80,7 +80,7 @@ void scanoptionForm::setText(INVOICETYPE type)
     case TRAVEL:
     {
         ui->label->setText("正在扫描发票类:合同类");
-         _scantype = "差旅";
+         _scantype = "合同";
         QPixmap pmap(":/imag/saomiaotravelnormal.png");
         ui->toolButton_3->setIcon(pmap);
         ui->toolButton_3->setIconSize(pmap.size());
@@ -113,7 +113,7 @@ void scanoptionForm::setpushbutton(bool visbale)
 
 void scanoptionForm::on_toolButton_2_clicked()
 {
-    emit signal_continue_scan(1);
+    emit signal_continue_scan(1);//剪切板
 }
 
 void scanoptionForm::on_toolButton_clicked()
@@ -121,3 +121,8 @@ void scanoptionForm::on_toolButton_clicked()
     emit signal_auto_scan(0);
 }
 
+
+void scanoptionForm::on_toolButton_4_clicked()
+{
+     emit signal_auto_scan(2);//本地文件
+}

@@ -29,6 +29,7 @@ public:
     QHBoxLayout *horizontalLayout;
     QToolButton *toolButton;
     QToolButton *toolButton_2;
+    QToolButton *toolButton_4;
     QToolButton *toolButton_3;
     QLabel *label;
     QSpacerItem *horizontalSpacer;
@@ -92,6 +93,19 @@ public:
         toolButton_2->setAutoRaise(true);
 
         horizontalLayout->addWidget(toolButton_2);
+
+        toolButton_4 = new QToolButton(scanoptionForm);
+        toolButton_4->setObjectName(QStringLiteral("toolButton_4"));
+        toolButton_4->setMinimumSize(QSize(140, 40));
+        toolButton_4->setStyleSheet(QString::fromUtf8("font: 75 10pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";\n"
+"color: rgb(255, 255, 255);\n"
+"background:rgba(64,197,173,1);\n"
+"border-radius:20px;"));
+        toolButton_4->setIcon(icon);
+        toolButton_4->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+        toolButton_4->setAutoRaise(true);
+
+        horizontalLayout->addWidget(toolButton_4);
 
         toolButton_3 = new QToolButton(scanoptionForm);
         toolButton_3->setObjectName(QStringLiteral("toolButton_3"));
@@ -164,7 +178,8 @@ public:
     {
         scanoptionForm->setWindowTitle(QApplication::translate("scanoptionForm", "Form", 0));
         toolButton->setText(QApplication::translate("scanoptionForm", "\350\207\252\345\212\250\346\211\253\346\217\217\345\217\221\347\245\250", 0));
-        toolButton_2->setText(QApplication::translate("scanoptionForm", "\350\277\236\347\273\255\346\211\253\346\217\217\345\217\221\347\245\250", 0));
+        toolButton_2->setText(QApplication::translate("scanoptionForm", "\351\200\211\346\213\251\345\211\252\345\210\207\346\235\277", 0));
+        toolButton_4->setText(QApplication::translate("scanoptionForm", "\351\200\211\346\213\251\346\234\254\345\234\260\346\226\207\344\273\266", 0));
         toolButton_3->setText(QApplication::translate("scanoptionForm", "\345\210\207\346\215\242\345\217\221\347\245\250\347\261\273\345\236\213", 0));
         label->setText(QApplication::translate("scanoptionForm", "TextLabel", 0));
         pushButton->setText(QApplication::translate("scanoptionForm", "\350\277\224\345\233\236\346\265\217\350\247\210\347\225\214\351\241\265", 0));

@@ -10,6 +10,8 @@
 #include <QAbstractNativeEventFilter>
 #include <QPrinter>
 #include <QFile>
+#include <QClipboard>
+#include <QSharedPointer>
 #include "processbardialog.h"
 #include "scanlogodialog.h"
 class opencvObject;
@@ -37,12 +39,14 @@ public slots:
     void onEndScan();
     void slot_upload_invoice();
     void slot_product_pic(QMap<QString, QString> str);
+    void slot_get_localphoto(int type);
 signals:
     void signal_start_thread(QString path,QString name,QString company,QString pingzheng,QString scantype,QString _identification,QString _iscontract);
     void signal_scan_end(QMap<QString,QString> str);
     void siganl_set_invoice_type(INVOICETYPE);
     void signal_back_index();
     void signal_show_index();
+    void signal_get_localPhoto(int type);
 private:
     scanoptionForm *_scanform;
     Ui::scandlg *ui;
@@ -60,6 +64,7 @@ private:
     QString dir_str;
     QString identification;
     QString iscontract;
+    QClipboard *clipboard;
 protected:
     //void paintEvent(QPaintEvent* thisEvent);
     //void resizeEvent(QResizeEvent* thisEvent);

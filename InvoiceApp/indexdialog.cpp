@@ -1576,11 +1576,12 @@ void IndexDialog::slot_setSumpic(QMap<QString,QString> strlist)
 {
 
     //重置_sumsuccpic内容
-     QString str ;
+     QString path ;
 
     if(strlist.value("invoicetype")=="success" || strlist.value("invoicetype")=="problem")
     {
-        str += strlist.value("invoicetype");
+        path= strlist.value("id");
+
         QString picpath = QString("%1/%2/%3").arg(STORTPATH).arg(_Uploadname).arg(strlist.value("id"));
 
         picForm *_picform1;
@@ -1597,7 +1598,7 @@ void IndexDialog::slot_setSumpic(QMap<QString,QString> strlist)
 
         _picform1->structpicinfo.invoicetype=_scanType;
         _picform1->structpicinfo.price = strlist.value("total").toFloat();
-         str += strlist.value("total");
+
         _picform1->structpicinfo.roation = strlist.value("orientation");
         _picform1->structpicinfo.identification = strlist.value("identification");
          _picform1->structpicinfo.iscontract = strlist.value("iscontract");
@@ -1608,22 +1609,22 @@ void IndexDialog::slot_setSumpic(QMap<QString,QString> strlist)
         _picform1->structpicinfo.details = strlist.value("details");
         _picform1->structpicinfo.truthRs = strlist.value("truthRs");
          _picform1->structpicinfo.receipttype = strlist.value("receipttype");
-           str += strlist.value("receipttype");
+
         _picform1->structpicinfo.problem = "";
 
         _sumsuccpic.append(_picform1);
 
     }
-    else if(strlist.value("invoicetype")=="fail")
+    else
     {
-        str += strlist.value("invoicetype");
+
+         path= strlist.value("id");
 
         picForm *_picform1 = new picForm(FAILD,strlist.value("id"),(_width-30)/3,0);
         _picform1->structpicinfo.invoiceoperation=FAILD;
         _picform1->structpicinfo.invoicetype= _scanType;
         _picform1->structpicinfo.identification = strlist.value("identification");
         _picform1->structpicinfo.price = 0;
-         str += "0";
         _picform1->structpicinfo.problem = "无法识别";
         _sumsuccpic.append(_picform1);
     }
@@ -1642,7 +1643,7 @@ void IndexDialog::slot_setSumpic(QMap<QString,QString> strlist)
     }
 
     QTextStream stream(&file);
-    QString tt = QString("%1").arg(str);
+    QString tt = QString("%1:%2").arg(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss")).arg(path);
     stream<<"add pic class in _sumsuccpic:IndexDialog::slot_setSumpic*****"+tt<<"\n";
     file.close();
 

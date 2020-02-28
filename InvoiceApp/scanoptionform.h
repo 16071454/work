@@ -35,6 +35,8 @@ private slots:
 
     void on_toolButton_clicked();
 
+    void on_toolButton_4_clicked();
+
 private:
     Ui::scanoptionForm *ui;
     ScanVerticalForm *_scanverticaldlg;

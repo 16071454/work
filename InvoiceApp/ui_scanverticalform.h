@@ -210,7 +210,7 @@ public:
         toolButton->setText(QApplication::translate("ScanVerticalForm", "\346\213\233\345\276\205\351\244\220\350\264\271\344\275\217\345\256\277\347\261\273", 0));
         toolButton_2->setText(QApplication::translate("ScanVerticalForm", "\350\257\257\351\244\220\350\264\271(\345\233\242\345\273\272)\347\261\273", 0));
         toolButton_3->setText(QApplication::translate("ScanVerticalForm", "\346\227\240\351\234\200\350\257\206\345\210\253\351\252\214\347\234\237\347\261\273", 0));
-        toolButton_5->setText(QApplication::translate("ScanVerticalForm", "\345\267\256\346\227\205\346\213\233\345\276\205\344\275\217\345\256\277\347\261\273", 0));
+        toolButton_5->setText(QApplication::translate("ScanVerticalForm", "   \345\220\210\345\220\214\347\261\273", 0));
         toolButton_4->setText(QApplication::translate("ScanVerticalForm", "   \345\205\266\344\273\226\347\261\273", 0));
     } // retranslateUi
 

@@ -223,15 +223,15 @@ void Dialog::slot_showscan()
     connect(reply1, SIGNAL(finished()), this, SLOT(replyFinished1()));
 
 
-//   if(ui->lineEdit_user_name->text()== "admin" && rightCode==true && ui->lineEdit__pwd->text()== "123456")
-//    {
+    //   if(ui->lineEdit_user_name->text()== "admin" && rightCode==true && ui->lineEdit__pwd->text()== "123456")
+    //    {
 
 
-//    }
-//    else
-//    {
-//
-//    }
+    //    }
+    //    else
+    //    {
+    //
+    //    }
 }
 
 void Dialog::replyFinished1()
@@ -253,11 +253,42 @@ void Dialog::replyFinished1()
     }
     else
     {
+        QPixmap *pixmap = new QPixmap();
+
+        pixmap->load(":/imag/u241.png");
+        rightCode=false;
+
+
+        pixmap->scaled(ui->label_codepic->size(), Qt::KeepAspectRatio);
+        ui->label_codepic->setScaledContents(true);
+        ui->label_codepic->setPixmap(*pixmap);
         QMessageBox::information(NULL,"提示","登录失败");
-               return;
+
+        return;
     }
 
     reply1->deleteLater();
+    QDir* dir = new QDir();
+    if(!dir->exists("D:/new1job")){
+        dir->mkpath("D:/new1job");
+    }
+
+
+    QFile file1("D:/new1job/log.txt");
+
+    if(!file1.open(QIODevice::ReadWrite|QIODevice::Text|QIODevice::Append))
+    {
+        return ;
+    }
+
+    QTextStream stream(&file1);
+    QString tt1 = QString("******************************************LOGIN:%2:%3**********************************************")
+            .arg(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss"));
+
+
+    stream<<tt1<<"\n";
+    file1.close();
+
 }
 
 

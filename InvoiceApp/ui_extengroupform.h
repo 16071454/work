@@ -38,7 +38,7 @@ public:
     {
         if (extengroupForm->objectName().isEmpty())
             extengroupForm->setObjectName(QStringLiteral("extengroupForm"));
-        extengroupForm->resize(784, 143);
+        extengroupForm->resize(748, 143);
         QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -70,7 +70,7 @@ public:
 
         frame = new QFrame(extengroupForm);
         frame->setObjectName(QStringLiteral("frame"));
-        QSizePolicy sizePolicy2(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        QSizePolicy sizePolicy2(QSizePolicy::Fixed, QSizePolicy::Fixed);
         sizePolicy2.setHorizontalStretch(0);
         sizePolicy2.setVerticalStretch(0);
         sizePolicy2.setHeightForWidth(frame->sizePolicy().hasHeightForWidth());
@@ -84,6 +84,7 @@ public:
         horizontalLayout->setContentsMargins(0, 0, 10, 0);
         toolButton = new QToolButton(frame);
         toolButton->setObjectName(QStringLiteral("toolButton"));
+        toolButton->setMinimumSize(QSize(136, 105));
         toolButton->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);\n"
 "background-color: rgb(102, 204, 183);\n"
 "font: 10pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));

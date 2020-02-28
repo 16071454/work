@@ -43,6 +43,7 @@ private slots:
 
     void on_lineEdit_fourcode_returnPressed();
 
+
 private:
     Ui::UploadingInfoForm *ui;
     //selectemployerDialog *_selectedemployee;

@@ -64,7 +64,7 @@ public:
     {
         if (UploadingInfoForm->objectName().isEmpty())
             UploadingInfoForm->setObjectName(QStringLiteral("UploadingInfoForm"));
-        UploadingInfoForm->resize(761, 239);
+        UploadingInfoForm->resize(831, 239);
         QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);

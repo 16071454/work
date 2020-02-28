@@ -6,6 +6,7 @@
 #include "qtwain.h"
 #include "dib.h"
 #include <LoginDlg.h>
+
 #include "opencvobject.h"
 
 static int scanlistindex=0;
@@ -42,6 +43,7 @@ scandlg::scandlg(QWidget *parent) :
         Dialog::instanceLogin()->show();
 
     });
+    connect(this,SIGNAL(signal_get_localPhoto(int)),this,SLOT(slot_get_localphoto(int)));
 
     sde = new opencvObject();
 
@@ -93,7 +95,7 @@ void scandlg::setText(INVOICETYPE type)
     else
     {
         identification ="1";
-         iscontract ="0";
+        iscontract ="0";
     }
 }
 
@@ -139,25 +141,35 @@ bool scandlg::winEvent(MSG *pMsg, long *result)
 
 void scandlg::onSelectButton(int type)
 {
-    _scanlog->setVisible(true);
-    // list.clear();
+    if(type==0)
+    {
+        _scanlog->setVisible(true);
 
-    if(m_pTwain ==NULL)
-    {
-        m_pTwain = new QTwain();
-        m_pTwain->setParent(this);
-        connect(m_pTwain, &QTwainInterface::dibAcquired,this, &scandlg::onDibAcquired);
-        connect(m_pTwain, &QTwainInterface::ScanEnd,this, &scandlg::onEndScan);
-    }
-    if(!m_pTwain->selectSource())
-    {
-        return;
-    }
+        if(m_pTwain ==NULL)
+        {
+            m_pTwain = new QTwain();
+            m_pTwain->setParent(this);
+            connect(m_pTwain, &QTwainInterface::dibAcquired,this, &scandlg::onDibAcquired);
+            connect(m_pTwain, &QTwainInterface::ScanEnd,this, &scandlg::onEndScan);
+        }
+        if(!m_pTwain->selectSource())
+        {
+            return;
+        }
 
-    if (!m_pTwain->acquire())
+        if (!m_pTwain->acquire())
+        {
+            QMessageBox::information(NULL,"提示","扫描失败");
+            _scanlog->hide();
+        }
+    }
+    if(type==1)//剪切板
     {
-        QMessageBox::information(NULL,"提示","扫描失败");
-        _scanlog->hide();
+        emit signal_get_localPhoto(1);
+    }
+    if(type == 2)
+    {
+        emit signal_get_localPhoto(2);
     }
 
 }
@@ -176,7 +188,6 @@ void scandlg::slot_product_pic(QMap<QString,QString> str)
     emit signal_scan_end(str);
     bardlg->setvalue(scanlistindex);
     scanlistindex ++;
-    QMessageBox::information(this,QString("%1").arg(scanlistindex),QString("%1").arg(scanlistindex));
     if(scanlistindex > mylist.count()-1)
     {
         bardlg->hide();
@@ -193,6 +204,181 @@ void scandlg::slot_product_pic(QMap<QString,QString> str)
 
     // }
 
+}
+
+void scandlg::slot_get_localphoto(int type)
+{
+    if(type==1)//剪切板
+    {
+
+        if(!clipboard)
+        {
+            clipboard = QApplication::clipboard();   //获取系统剪贴板指针
+        }
+
+
+        QPixmap originalmap  = clipboard->pixmap();
+        if(originalmap.isNull())
+        {
+            return;
+        }
+
+
+        //图片自动适应labedl
+        ui->label->setFixedSize(800,600);
+        ui->label_fan->setFixedSize(800,600);
+        ui->label->setScaledContents(true);
+        ui->label_fan->setScaledContents(true);
+        dir_str = QString("%1%2").arg(STORTPATH).arg(_Uploadname);
+        // 检查目录是否存在，若不存在则新建
+        QDir dir;
+        if (!dir.exists(dir_str))
+        {
+            dir.mkpath(dir_str);
+        }
+
+        QDateTime currentdt = QDateTime::currentDateTime();
+        QString currenttime=currentdt.toString("sshhddMMyyyy");
+        QString  spath = QString("%1\\%2pix%3.jpg").arg(dir_str).arg(currenttime).arg(insertcount++);
+
+        //QMessageBox::information(NULL,"insertcount",QString("%1").arg(insertcount));
+
+        mylist.append(spath);
+
+        sumcount = mylist.count()-1;
+        originalmap.save(spath);
+
+
+        QPixmap pixmap1(spath);
+        int sum = insertcount;
+
+        if(sum%2==0)
+        {
+            ui->label->setPixmap(pixmap1);
+            ui->label->resize(QSize(pixmap1.width(),pixmap1.height()));
+
+        }
+        else
+        {
+            ui->label_fan->setPixmap(pixmap1);
+            ui->label_fan->resize(QSize(pixmap1.width(),pixmap1.height()));
+        }
+
+        _scanlog->hide();
+        if(mylist.count()==0)
+        {
+            return;
+        }
+
+
+        if(bardlg == NULL)
+        {
+            bardlg = new processBarDialog();
+            ui->horizontalLayout_3->addWidget(bardlg);
+            bardlg->setvalue(0);
+
+        }
+
+        bardlg->setMaxvalue(sumcount);
+        bardlg->show();
+        if(QString::compare(identification,"1")==0)//new modify 28/2
+        {
+            sde->photoProcess(dir_str);
+        }
+        emit signal_start_thread(mylist.at(scanlistindex),_baxiaoren,_gongsi,_danjupingzheng,_scanform->getscantype(),identification,iscontract);//先上传第一个
+
+    }
+    if(type==2)
+    {
+        QStringList FileName;
+        //        QString fileName = QFileDialog::getOpenFileName(this, tr("选择文件"),
+        //                                                        "D:/",
+        //                                                        tr("上传图片文件(*.png *.jpg)"));
+
+
+        QFileDialog* fileDialog = new QFileDialog(this,tr("选择文件"),"D:/");
+        fileDialog->setFileMode(QFileDialog::ExistingFiles);
+        fileDialog->setWindowTitle( tr("上传图片文件"));
+        fileDialog->setNameFilter("*.png *.jpg");
+
+        if ( fileDialog->exec() == QDialog::Accepted )
+        {
+
+
+            FileName=fileDialog->selectedFiles();
+
+
+        }
+        for(int i=0;i<FileName.size();i++)
+        {
+            QPixmap pixmap(FileName.at(i));
+
+            //图片自动适应labedl
+            ui->label->setFixedSize(800,600);
+            ui->label_fan->setFixedSize(800,600);
+            ui->label->setScaledContents(true);
+            ui->label_fan->setScaledContents(true);
+            dir_str = QString("%1%2").arg(STORTPATH).arg(_Uploadname);
+            // 检查目录是否存在，若不存在则新建
+            QDir dir;
+            if (!dir.exists(dir_str))
+            {
+                dir.mkpath(dir_str);
+            }
+
+            QDateTime currentdt = QDateTime::currentDateTime();
+            QString currenttime=currentdt.toString("sshhddMMyyyy");
+            QString  spath = QString("%1\\%2pix%3.jpg").arg(dir_str).arg(currenttime).arg(insertcount++);
+
+            //QMessageBox::information(NULL,"insertcount",QString("%1").arg(insertcount));
+
+            mylist.append(spath);
+
+            sumcount = mylist.count()-1;
+            pixmap.save(spath);
+
+
+            QPixmap pixmap1(spath);
+            int sum = insertcount;
+
+            if(sum%2==0)
+            {
+                ui->label->setPixmap(pixmap1);
+                ui->label->resize(QSize(pixmap1.width(),pixmap1.height()));
+
+            }
+            else
+            {
+                ui->label_fan->setPixmap(pixmap1);
+                ui->label_fan->resize(QSize(pixmap1.width(),pixmap1.height()));
+            }
+
+        }
+        _scanlog->hide();
+        if(mylist.count()==0)
+        {
+            return;
+        }
+
+
+        if(bardlg == NULL)
+        {
+            bardlg = new processBarDialog();
+            ui->horizontalLayout_3->addWidget(bardlg);
+            bardlg->setvalue(0);
+
+        }
+
+        bardlg->setMaxvalue(sumcount);
+        bardlg->show();
+        if(QString::compare(identification,"1")==0)//new modify 28/2
+        {
+            sde->photoProcess(dir_str);
+        }
+        emit signal_start_thread(mylist.at(scanlistindex),_baxiaoren,_gongsi,_danjupingzheng,_scanform->getscantype(),identification,iscontract);//先上传第一个
+
+
+    }
 }
 
 void scandlg::onEndScan()
@@ -216,7 +402,11 @@ void scandlg::onEndScan()
 
     bardlg->setMaxvalue(sumcount);
     bardlg->show();
-    sde->photoProcess(dir_str);
+    if(QString::compare(identification,"1")==0)//new modify 28/2
+    {
+        sde->photoProcess(dir_str);
+    }
+
 
     emit signal_start_thread(mylist.at(scanlistindex),_baxiaoren,_gongsi,_danjupingzheng,_scanform->getscantype(),identification,iscontract);//先上传第一个
 }
@@ -256,7 +446,7 @@ void scandlg::onDibAcquired(QPixmap pixmap)
     QPixmap pixmap1(spath);
     int sum = insertcount;
 
-     if(sum%2==0)
+    if(sum%2==0)
     {
         ui->label->setPixmap(pixmap1);
         ui->label->resize(QSize(pixmap1.width(),pixmap1.height()));
