@@ -31,4 +31,4 @@ git push origin –delete 分支名：删除远程分支
 
 git reset --hard 版本号：回退到具体版本
 git revert 版本号：回退到具体版本（推荐）
-
+////////二人日日日日日日日日日日日日日日日
