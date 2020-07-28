@@ -28,4 +28,8 @@ git branch -a :列出所有分支
 git branch -D ss:删除本地分支
 git push origin –delete 分支名：删除远程分支
 
+<<<<<<< HEAD
 git reset --hard 版本号：回退到具体版本
+=======
+///////////////////////new
+>>>>>>> 2bf40665449b4929bf594d7972954615caa358e8
